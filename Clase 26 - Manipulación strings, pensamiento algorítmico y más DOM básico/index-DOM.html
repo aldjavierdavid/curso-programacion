@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            color: red;
+        }
+
+        .encuadra {
+            border: 5px solid rgb(18, 123, 43);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="titulo">Developers facts</h1>
+    <h2 class="clase1 clase2 clase3">Cosas que necesitamos para ser una buena programadora</h2>
+    <ul class="encuadra">
+        <li id="primer-item">Llevar bien la frustración</li>
+        <li>Practicar mucho</li>
+        <li>Ser generoso con los <em>paddings</em></li>
+    </ul>
+    <script>
+
+        // document: objeto global de JavaScript que nos permite realizar operaciones sobre el documento que hemos cargado y contiene información del mismo
+
+        // querySelector: es una función del objeto document, que nos permite recuperar un nodo del DOM
+
+        // querySelector(:selectorCSS) : La función querySelector requiere que le pasamos un selector CSS. Esta función va a devolver un objeto. Este objeto es un nodo del DOM
+
+        // Cada nodo del DOM contiene un conjunto de propiedades, que nos permite consultar o modificar varias partes de este nodo.
+
+        // Por ejemplo, la propiedad .textConent nos permite consultar o modificar su valor textual
+        // La propiedad style, es un objeto que contiene todos los posibles estilos en línea para ese elemento
+        // La propiedad classList es una estrctura de datos, que nos permite añadir o quitar clases CSS
+
+
+        console.dir(document.querySelector('h2')) // selector CSS en formato string
+
+        console.log(document.querySelector('h2').textContent); //acceder a la propiedad textContent del h2
+
+        //Asigname a la variable titulo el textContent del h1
+        let titulo = document.querySelector('h1').textContent;
+        console.log("titulo del h1: ", titulo);
+
+        // Modifica la propiedad textContent del nodo h1, con el valor 'JavaScript mola'
+        document.querySelector('h1').textContent = 'JavaScript mola mogollón';
+
+        // Modifica la propiedad textContent del primer li, para que ponga 'No te frustres!'
+        document.querySelector('#primer-item').textContent = 'No te frustes!';
+
+        // Modifica los estilos el línea del texto 'paddings' para cambiar su color a 'green'
+        document.querySelector('em').style.color = 'rgb(0, 255, 0)';
+        document.querySelector('em').style.fontSize = '5rem';
+
+
+        // Si quisiera poner un borde verde de 1px al h1 con estilos en línea
+
+        // classList tiene todas las clases CSS asociadas a este elemento 
+        document.querySelector('h1').classList.add('encuadra');
+
+        document.querySelector('li').classList.add('encuadra');
+
+
+        // eliminar una clase CSS de un elemento
+        document.querySelector('ul').classList.remove('encuadra');
+
+        // Cambia el color del background-color de todo los li a amarillo
+
+        //1. Seleccionar todos los li del documento
+        //2. Para cada elemento, cambia el estilo en linea backgroundColor a 'yellow'
+        // https://lenguajejs.com/javascript/dom/seleccionar-elementos-dom/#queryselectorall
+        document.querySelectorAll('li').forEach(item => {
+            item.style.backgroundColor = 'yellow';
+            item.textContent = 'hola hola!';
+        });
+
+    </script>
+</body>
+
+</html>
