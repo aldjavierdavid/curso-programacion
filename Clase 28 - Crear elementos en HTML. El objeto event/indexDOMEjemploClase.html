@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cosa,
+        .otra_cosa {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            background-color: azure;
+            font-size: 3rem;
+        }
+
+        .key {
+            width: 50px;
+            padding: 2rem;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Objeto Event</h1>
+    <div class="cosa">
+        Carta 1
+    </div>
+    <div style="background-color: violet;" class="otra_cosa">
+        Carta 2
+    </div>
+    <hr>
+    <div class="key" onclick="seleccionarLetra(event)">
+        A
+    </div>
+    <div class="key" onclick="seleccionarLetra(event)">
+        B
+    </div>
+
+    <script>
+        document.querySelector('.cosa').addEventListener('click', function (event) {
+            event.target.style.display = 'none';
+        });
+
+        document.querySelector('.otra_cosa').addEventListener('click', function (event) {
+            event.target.style.display = 'none';
+
+        });
+
+        // document.querySelector('.cosa').addEventListener('mouseover', function () {
+        //     document.querySelector('.cosa').textContent = 'Estoy dentro!';
+        // });
+
+
+        // document.querySelector('.cosa').addEventListener('mouseout', function () {
+        //     document.querySelector('.cosa').textContent = '';
+        // });
+        function seleccionarLetra(event) {
+            console.log('evento de la tecla: ', event.target.textContent);
+        }
+    </script>
+</body>
+
+</html>

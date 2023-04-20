@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+
+    <title>Eventos JavaScript</title>
+    <style>
+        p {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1 class="container">Práctica con eventos</h1>
+        <h2>Carrito de compra</h2>
+        <div id="compras" class="container">
+
+        </div>
+        <h2>Wonderboxes</h2>
+        <select name="" id="filtro-actividades">
+            <option value="todas">Todas las actividades</option>
+
+            <option value="en-pareja">En pareja, enamorate más</option>
+            <option value="con-amigos">Con amigos, vais a disfrutar</option>
+            <option value="en-familia">En familia, de tranquis</option>
+        </select>
+        <article id="actividad-apicultura">
+            <h3>Apicultura</h3>
+            <p>A disfrutar con abejas</p>
+            <!-- Podemos asociar un evento en un atributo HTML. El valor (lo que va entre comillas) es directamente código JavaScript  -->
+            <button onclick="añadirAlCarrito('Apicultura')">Adquirir</button>
+        </article>
+        <article>
+            <h3>Escalada</h3>
+            <p>Sube las mejores montañas</p>
+            <button id="escalada">Adquirir</button>
+        </article>
+        <article>
+            <h3>Buceo</h3>
+            <p>Verás tiburones</p>
+            <button class="buceo">Adquirir</button>
+            <button id="otro-boton">Comprar</button>
+        </article>
+    </main>
+    <script>
+        function añadirAlCarrito(actividad) {
+            // 1. Crear un nuevo nodo HTML
+            // Crear un nuevo Paragraph
+            let compra = document.createElement('p');
+
+            // 2. Rellenarlo con la estructura e información adecuada
+            compra.innerHTML = 'Nueva actividad: ' + actividad;
+
+            // 3. Añadirlo como hijo de otro nodo
+            // Paso 1: recuperamos el nodo padre 
+            let divCarrito = document.querySelector('#compras');
+            divCarrito.appendChild(compra);
+        }
+
+        // 3 formas diferentes de asociar un evento a un elemento HTML
+
+        // 1. Atributo HTML
+
+        // 2. Todos los objetos del DOM tienen varias propiedades para definir eventos JavaScript. onclick, ondblclick, etc. 
+        // Tenemos que asignarle una función a esa propiedad que el navegador va a ejecutar cuando hagamos click
+        document.querySelector('#escalada').onclick = function () {
+            console.log('Añadir escalada al carrito de compra.');
+            añadirAlCarrito('Escalada');
+        }
+
+        // Ejercicio. Asocia un evento click al botón de la experiencia de buceo, y cuando el usuario haga click muestra por consola 'Añadir experiencia de buceo al carrito.'. No copiar y pegar el querySelector, escribidlo todo. Si os da error, mirad la Console del navegador.
+        document.querySelector('.buceo').onclick = añadirCompraBuceo;
+
+        document.querySelector('#otro-boton').addEventListener('click', añadirCompraBuceo);
+
+        function añadirCompraBuceo() {
+            console.log('Añadir buceo al carrito de compra');
+        }
+
+        // La última forma de añadir eventos a un elemento HTML es a través de un listener. Vamos a 'escuchar' al evento 'change'. "Cuando cambie el valor del <select>, ejecuta función que te he asociado"
+
+        // addEventListener es una función que tienen todos los objetos del DOM. Permiten asociar un evento a un elemento El primer parámetro, es el tipo de evento, formato string, y el segundo parámetro es una función que se va ejectutar cuando se capture el evento
+        document.querySelector('#filtro-actividades').addEventListener('change', function () {
+
+            // Ejercicio: Recupera el nodo identificado con el id="filtro-actividades" y muestra por consola el valor de la propiedad 'value' de este objeto. Deberia salir el valor atributo 'value' de la opción seleccionada
+            let filtroSeleccionado = document.querySelector('#filtro-actividades').value;
+            console.log('Filtame las actividades por: ', filtroSeleccionado);
+
+            // Ejercicio: Si el usuario selecciona el filtro "en-pareja", NO quiero que se muestre la actividad de Apicultura
+
+            // En cuanto seleccione el filtro 'en-pareja', vamos a ocultar la actividad de la Apicultura
+            // En la variable filtroSeleccionado tengo el valor de la opción que ha seleccionado el usuario
+
+            // Si filtroSeleccionado es igual a 'en-pareja'-> recupera el nodo de <article> que identifica la apicultura, y actualiza el estilo en línea de display a 'none' (2 líneasde código)
+            if (filtroSeleccionado == 'en-pareja') {
+                document.querySelector('#actividad-apicultura').style.display = 'none';
+            } else {
+                // tenemos que mostrar también la actividad de ApiCultura
+                document.querySelector('#actividad-apicultura').style.display = 'block';
+            }
+        });
+
+
+        // Existen otras formas de seleccionar los nodos del DOM.
+        // getElementById selecciona el nodo HTML por su id.
+        // NO hay que poner el #, solo el valro del id
+        document.getElementById('actividad-apicultura').style.border = "1px solid orange";
+
+        // Existe un método para seleccionar todos los nodos HTML que tienen una class determinada. Le tienes poner el nombre de clase sin el .
+        console.log(document.getElementsByClassName('container'));
+
+
+        // innerHTML
+        // La propiedad innerHTML contiene un string con todas etiquetas que contiene un tag 
+        document.querySelector('h1').innerHTML = "<span style='color:red'>Practica con <strong>Eventos</strong></span>";
+
+        // Hagan click en una de las experiencias, lo añadan a una especie de carrito de compra
+
+    </script>
+</body>
+
+</html>
