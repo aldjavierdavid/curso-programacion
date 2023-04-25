@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css%22%3E">
+
+    <title>Formulario básico HTML5</title>
+</head>
+
+<body class="container">
+    <form method="post" action="https://singulars2023.free.beeceptor.com%22%3E/">
+
+        <h1>FORMULARIO </h1>
+
+        <fieldset>
+
+            <label for="nombre">Nombre: </label>
+            <input id="nombre" type="text" maxlength="50" placeholder="Óscar" name="nombre" required>
+
+            <label for="Edad">Edad: </label>
+            <input id="Edad" name="edad" type="number" min="18" max="99" placeholder="24" required>
+
+            <label for="Dni">Dni: </label>
+            <input type="text" id="dni" placeholder="000000000X" name="dni" pattern="[A-Z]?[0-9]{8}[A-Z]" required>
+
+            <label for="Ciudad">Ciudad de origen </label>
+            <input type="text" required maxlength="100" placeholder="Barcelona" name="Ciudad " id="Ciudad" required>
+            <label for="modo-estudio">Como vienes a estudiar </label>
+            <select id="modo-estudio" name="modo-estudio" required>
+                <option value="a-pie">A pie</option>
+                <option value="transporte-publico" selected>Transporte público</option>
+                <option value="transporte-privado">Transporte privado</option>
+            </select>
+            <label for="objetivos">Objetivos del curso </label>
+            <textarea id="objetivos" maxlength="1024" rows="4" cols="30" name="Objetivosdelcurso" id="Objetivos">
+            </textarea>
+
+            <input type="submit" class="submit" id="submit" value="Enviar" />
+
+    </form>
+    <script>
+        document.querySelector("#Ciudad").addEventListener
+            ("change", function (event) {
+
+                console.log("Ciudad: ", document.querySelector("#Ciudad").value.toUpperCase());
+
+            })
+
+        // EJERCICIO: asociad el event 'change' al input de la ciudad de origen. Cada vez que cambie el valor del input, queremos ver por consola la ciudad que ha puesto el usuario en mayúsculas
+
+        /** evento 'input' */
+        document.querySelector('#dni').addEventListener("focus", function () {
+    console.log('Vas a escribir tu dni?');
+});
+
+
+/**EJERCICIO: Asocia el evento adecuado para que cada vez que gane el foco el */
+    </script>
+</body>
+
+</html>
