@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="canvas">
+        <div id="primary-number">aqui va num1</div>
+        <div id="add">+</div>
+        <div id="secondary-number">aqui va num2</div>
+        <div id="equal">=</div>
+        <div>
+            <input type="number" id="guess">
+        </div>
+        <div>
+            <button id="btn">check</button>
+        </div>
+    </div>
+    <div>
+        <p class="greeting-message"></p>
+    </div>
+    <script src="http://chancejs.com/chance.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+    <script>
+        // Quiero un número entre 1 y 100
+
+        let num1 = chance.integer({ min: 1, max: 100 }); // 1. Math.random
+        let num2 = chance.integer({ min: 1, max: 100 }); // 2. Math.random
+
+        // 3. - 2 líneas de código usando adecuadamente querySelector
+        $('#primary-number').text(num1);
+        $('#secondary-number').text(num2);
+
+
+        // 4. - addEventListener. NO hace falta un evento 'submit' aquí porque no estamos gestionando un <form>. Escuchar el evento 'click' es suficiente
+            $('#btn').on('click', () => {
+            let val1 = +$('#primary-number').text();
+            let val2 = +$('#secondary-number').text();
+
+            if ((val1 + val2) == $('#guess').val()) {
+                console.log('ok!');
+                $('.greeting-message').text('Congrats!');
+                $('.greeting-message').show();
+                $('.greeting-message').css('color', 'green')
+            }
+        });
+
+
+    </script>
+</body>
+
+</html>
